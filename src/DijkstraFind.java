@@ -14,7 +14,7 @@ public class DijkstraFind {
 
     /**
      * Instantiate algorithm providing graph
-     * @param graph
+     * @param graph WeighedDigraph graph
      */
     public DijkstraFind(WeighedDigraph graph) {
         this.graph = graph;
@@ -23,14 +23,14 @@ public class DijkstraFind {
 
     /**
      * Calculate shortest path from A to B
-     * @param vertexA
-     * @param vertexB
+     * @param vertexA source vertex
+     * @param vertexB destination vertex
      * @return list of vertices composing shortest path between A and B
      */
     public ArrayList<Integer> shortestPath(int vertexA, int vertexB) {
-        previousNode = new HashMap();
-        weight = new HashMap();
-        pq = new PriorityQueue(size, PQComparator);
+        previousNode = new HashMap<Integer, Integer>();
+        weight = new HashMap<Integer, Double>();
+        pq = new PriorityQueue<Integer>(size, PQComparator);
 
         /* Set all distances to Infinity */
         for (int vertex : graph.vertices())
@@ -70,7 +70,7 @@ public class DijkstraFind {
         We are reverse walking points to get to the beginning of the path.
         Using temporary stack to reverse the order of node keys stored in nodePath.
         */
-        Stack<Integer> nodePathTemp = new Stack();
+        Stack<Integer> nodePathTemp = new Stack<Integer>();
         nodePathTemp.push(vertexB);
 
         int v = vertexB;
@@ -105,7 +105,7 @@ public class DijkstraFind {
         WeighedDigraph graph;
 
         try {
-            graph = new WeighedDigraph("/Users/marcinkossakowski/Dropbox/IdeaProjects/shortestPath/src/map.txt");
+            graph = new WeighedDigraph(args[0]);
             // Print graph
             System.out.print("Representation of WeighedDigraph\n");
             System.out.print(graph);
